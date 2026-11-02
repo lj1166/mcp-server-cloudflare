@@ -125,6 +125,14 @@ Create a KV namespace.
 		const docsTool = registeredTools.get('search_cloudflare_documentation')
 		expect(docsTool?.options.outputSchema).toBeDefined()
 		expect(docsTool?.options.outputSchema.shape.results).toBeDefined()
+		expect(docsTool?.options.annotations).toMatchObject({
+			readOnlyHint: true,
+			openWorldHint: false,
+		})
+		expect(registeredTools.get('migrate_pages_to_workers_guide')?.options.annotations).toMatchObject({
+			readOnlyHint: true,
+			openWorldHint: false,
+		})
 
 		const response = await docsTool?.handler({ query: 'workers kv binding example' })
 
